@@ -24,6 +24,19 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11065620054"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11065620054');
+</script>
+<!-- Event snippet for Page vue conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-11065620054/nnRLCMrxgdUZENbsv5wp'});
+</script>
 
 
   </head>
@@ -1837,6 +1850,7 @@ section.contact-us-page .right-info ul li span {
           </div>
       </div>
   </div>
+
   <div class="search-form">
       <div class="container">
           <div class="row">
@@ -1849,6 +1863,7 @@ section.contact-us-page .right-info ul li span {
                               <fieldset>
                                   <label for="chooseReciter" class="form-label">اختر قارئ</label>
                                   <select name="Category" class="form-select" aria-label="Default select example" id="chooseReciter">
+                                      
                                   </select>
                               </fieldset>
                           </div>
@@ -1943,13 +1958,14 @@ section.contact-us-page .right-info ul li span {
     const apiUrl ='https://mp3quran.net/api/v3';
 const language = 'ar';
 
+
 async function getReciters(){  
     const chooseReciter = document.querySelector('#chooseReciter')
     const res = await fetch(`${apiUrl}/reciters?language=${language}`)
     const data = await res.json()
     chooseReciter.innerHTML='<option value=""></option>'
     data.reciters.forEach(reciter => {
-        chooseReciter.innerHTML += `<option value=" ${reciter.id}"> ${reciter.name} </option>`
+        chooseReciter.innerHTML += `<option value="${reciter.id}">${reciter.name}</option>`
     });
 
     chooseReciter.addEventListener('change',e=>getMoshaf(e.target.value))
