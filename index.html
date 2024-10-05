@@ -24,8 +24,10 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11065620054"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -1905,15 +1907,19 @@ section.contact-us-page .right-info ul li span {
               <div class="col-lg-12 text-center mb-4">
               <h2 style="color: green;" style="margin: 10px; padding-bottom: 10px; ">البث المباشر</h2>
               <span class="white-button">
-                <a  href=" https://www.cpmrevenuegate.com/mb155b5tt?key=5840a47a878c0f004c2c1c37a87fdb17" >قناة القران</a><br>
-                <iframe style="margin-top: 15px;" width="300" height="315" src="https://www.youtube.com/embed/moQtMet7F7w?si=sNZAuyDuEQLu35D2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <a  href="javascript:voide()" onclick="playLive('https://win.holol.com/live/quran/playlist.m3u8')" >قناة القران</a><br>
+                
               </span><br>
               <span class="white-button">
-                <a href=" https://noohapou.com/4/8136295" >قناة السنة</a><br>
-                <iframe style="margin-top: 15px;" width="300" height="315" src="https://www.youtube.com/embed/-mr6TD6YxR8?si=Qfh_LkcUaNVVK9FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <a href=" javascript:voide()"onclick="playLive('https://win.holol.com/live/sunnah/playlist.m3u8')" >قناة السنة</a><br>
+               
               </span></div>
         
           </div>
+          <video width="80%" controls id="liveVideo" >
+            <source src="" type="video/mp4">
+            <source src="" type="video/ogg">
+          </video>
       </div>
   </section>
   <script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=369451&format=300x250&ga=g"></script>
@@ -2070,6 +2076,17 @@ const server = createServer((req, res) => {
 server.listen(3000, '127.0.0.1', () => {
   console.log('Listening on 127.0.0.1:3000');
 });
+function playLive(channel){
+  if(Hls.isSupported()) {
+        var video = document.getElementById('liveVideo');
+        var hls = new Hls();
+        hls.loadSource(`${channel}`);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED,function() {
+          video.play();
+      });
+     }
+}
 
 // run with `node server.mjs`</script>
 <script type='text/javascript' src='//pl24464203.cpmrevenuegate.com/32/15/d9/3215d9927275683483415abd6173614a.js'></script>
