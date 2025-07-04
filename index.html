@@ -24,6 +24,45 @@
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+	  <script>
+  // هذا المتغير يحدد واش الزائر وافق ولا لا
+  var userConsented = false;
+
+  // نخزن الموافقة في localStorage
+  function acceptCookies() {
+    localStorage.setItem("cookie_consent", "true");
+    userConsented = true;
+    document.getElementById("cookie-banner").style.display = "none";
+    loadAnalytics(); // نفعل Google Analytics هنا
+  }
+
+  // نشوف إذا راه موافق من قبل
+  window.onload = function () {
+    if (localStorage.getItem("cookie_consent") === "true") {
+      userConsented = true;
+      loadAnalytics();
+    }
+  };
+
+  // هذا الكود هو Google Analytics، يتفعل فقط بعد الموافقة
+  function loadAnalytics() {
+    var script1 = document.createElement("script");
+    script1.setAttribute("async", "");
+    script1.src = "https://www.googletagmanager.com/gtag/js?id=G-P5J3HDP68R"; // ضع معرف GA تاعك
+
+    var script2 = document.createElement("script");
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P5J3HDP68R');
+    `;
+
+    document.head.appendChild(script1);
+    document.head.appendChild(script2);
+  }
+</script>
+
 	  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5J3HDP68R"></script>
 <script>
@@ -2105,6 +2144,13 @@ function playLive(channel){
 <script type='text/javascript' src='//pl24464203.cpmrevenuegate.com/32/15/d9/3215d9927275683483415abd6173614a.js'></script>
 <script type='text/javascript' src='//pl24464203.cpmrevenuegate.com/32/15/d9/3215d9927275683483415abd6173614a.js'></script>
  <script type='text/javascript' src='//pl24464203.cpmrevenuegate.com/32/15/d9/3215d9927275683483415abd6173614a.js'></script>
+	<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: #fff; padding: 15px; text-align: center; font-family: sans-serif; z-index: 9999;">
+  هذا الموقع يستخدم ملفات تعريف الارتباط لتحسين تجربتك. بالاستمرار، أنت توافق.
+  <button onclick="acceptCookies()" style="margin-left: 10px; padding: 5px 10px; background: #0f0; border: none; cursor: pointer;">
+    أوافق
+  </button>
+</div>
+
 </body>
 	 
 </html>
